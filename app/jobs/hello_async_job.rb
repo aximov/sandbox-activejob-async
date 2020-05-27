@@ -1,16 +1,10 @@
 class HelloAsyncJob < ApplicationJob
   queue_as :default
 
-  def serialize
-    super.merge('context' => { 'context-key' => 'context-value' })
-  end
-
-  def deserialize(arguments)
-    super
-    puts "deserializing: #{arguments['context']}"
-  end
+  include SerializeContext
 
   def perform(*args)
+    puts @context_out
     puts 'did a thing'
   end
 end
