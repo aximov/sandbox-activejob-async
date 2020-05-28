@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require_relative '../app/jobs/async_context_serializer.rb'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -17,5 +18,6 @@ module SandboxActivejobAsync
     # the framework and any gems in your application.
 
     config.active_job.queue_adapter = :async
+    config.active_job.custom_serializers << AsyncContextSerializer
   end
 end

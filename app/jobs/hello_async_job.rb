@@ -1,10 +1,9 @@
 class HelloAsyncJob < ApplicationJob
   queue_as :default
 
-  include SerializeContext
-
-  def perform(*args)
-    puts @context_out
+  def perform(context_async, *args)
+    puts context_async
+    puts context_async.key, context_async.value
     puts 'did a thing'
   end
 end
