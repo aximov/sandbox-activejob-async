@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   get '/ping', to: lambda { |_|
     c = ContextAsync.new('thisiskey', 'thisisvalue')
-    HelloAsyncJob.perform_later(c)
+    # HelloAsyncJob.perform_later(c)
+    SwitchableJob.perform_later(c)
     [200, {}, ['pong']]
   }
 end
